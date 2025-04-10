@@ -1,0 +1,11 @@
+services:
+  crud_dp_vii:
+    container_name: 'crud_dp_vii'
+    image: 'postgres:16.4-alpine'
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: 'crud_dp_vii'
+      POSTGRES_PASSWORD: 'crud_dp_vii'
+      POSTGRES_DB: 'crud_dp_vii'
