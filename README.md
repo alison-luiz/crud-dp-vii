@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://github.com/user-attachments/assets/4297188e-459f-4d62-8fe1-e945b76c1fdf" width="250"/>
+    <img src="https://github.com/user-attachments/assets/1d64055c-721a-4d05-80e0-4eaf9b6ace33" width="250"/>
 </div>
 
 # Trabalho do bimestre - Desafio Profissional VII
