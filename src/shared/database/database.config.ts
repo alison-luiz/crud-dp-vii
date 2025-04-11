@@ -1,6 +1,9 @@
 import { ConfigService } from '@nestjs/config'
 import { TypeOrmModuleOptions } from '@nestjs/typeorm'
 
+import { Character } from '@/modules/character/entities/character.entity'
+import { MagicItem } from '@/modules/magic-item/entities/magic-item.entity'
+
 export class DatabaseConfig {
 	static createTypeOrmOptions(
 		configService: ConfigService
@@ -10,7 +13,7 @@ export class DatabaseConfig {
 			url: configService.get('DATABASE_URL'),
 			ssl: false,
 			useUTC: true,
-			entities: [],
+			entities: [Character, MagicItem],
 			synchronize: true,
 			connectTimeoutMS: 30000,
 			logging: false,

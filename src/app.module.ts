@@ -4,6 +4,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { DatabaseService } from './shared/database/database.service'
 
+import { CharacterModule } from './modules/character/character.module'
+import { MagicItemModule } from './modules/magic-item/magic-item.module'
+
 @Module({
 	imports: [
 		ConfigModule.forRoot(),
@@ -12,7 +15,9 @@ import { DatabaseService } from './shared/database/database.service'
 			useFactory: async (configService: ConfigService) =>
 				DatabaseConfig.createTypeOrmOptions(configService),
 			inject: [ConfigService]
-		})
+		}),
+		CharacterModule,
+		MagicItemModule
 	],
 	controllers: [],
 	providers: [DatabaseService]
