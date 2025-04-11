@@ -29,24 +29,10 @@ Este projeto é um sistema de gerenciamento para um jogo de RPG (Role-Playing Ga
 ## Instalação
 
 1. Clone o repositório
-2. Instale as dependências:
-```bash
-yarn install
-```
 
-3. Configure as variáveis de ambiente:
-```bash
-cp .env.example .env
-```
-
-4. Inicie o banco de dados:
+2. Inicie o banco de dados e a aplicação com Docker:
 ```bash
 docker compose up -d
-```
-
-5. Inicie o servidor:
-```bash
-yarn start:dev
 ```
 
 ## Documentação da API
