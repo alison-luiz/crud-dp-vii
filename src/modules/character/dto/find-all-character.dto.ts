@@ -1,5 +1,5 @@
 import { QueryTemplateDto } from '@/shared/dtos/query-template.dto'
-import { IsEnum, IsNumber, IsOptional } from 'class-validator'
+import { IsEnum, IsOptional } from 'class-validator'
 import { IsNotEmpty } from 'class-validator'
 import { IsString } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
@@ -37,8 +37,8 @@ export class FindAllCharacterDto extends QueryTemplateDto {
 		description: 'Nível do personagem',
 		example: 1
 	})
-	@IsNumber()
+	@IsString()
 	@IsOptional()
 	@IsNotEmpty()
-	level: number
+	level: string
 }

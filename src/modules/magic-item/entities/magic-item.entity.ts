@@ -23,6 +23,8 @@ export class MagicItem {
 	@Column({ type: 'int', nullable: false, default: 0 })
 	defense: number
 
-	@ManyToOne(() => Character, (character) => character.magicItems)
+	@ManyToOne(() => Character, (character) => character.magicItems, {
+		eager: true
+	})
 	character: Character
 }

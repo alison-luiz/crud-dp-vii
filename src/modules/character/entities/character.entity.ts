@@ -38,7 +38,7 @@ export class Character {
 	get totalStrength(): number {
 		return (
 			this.strength +
-			this.magicItems.reduce((acc, item) => acc + item.strength, 0)
+			(this.magicItems?.reduce((acc, item) => acc + item.strength, 0) || 0)
 		)
 	}
 
@@ -46,7 +46,7 @@ export class Character {
 	get totalDefense(): number {
 		return (
 			this.defense +
-			this.magicItems.reduce((acc, item) => acc + item.defense, 0)
+			(this.magicItems?.reduce((acc, item) => acc + item.defense, 0) || 0)
 		)
 	}
 }
