@@ -1,11 +1,30 @@
 services:
-  crud_dp_vii:
-    container_name: 'crud_dp_vii'
+  db:
+    container_name: 'rpg_db'
     image: postgres:latest
     restart: always
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_USER: 'crud_dp_vii'
-      POSTGRES_PASSWORD: 'crud_dp_vii'
-      POSTGRES_DB: 'crud_dp_vii'
+      POSTGRES_USER: 'rpg_db'
+      POSTGRES_PASSWORD: 'rpg_db'
+      POSTGRES_DB: 'rpg_db'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    container_name: 'rpg_db_app'
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_URL=postgres://rpg_db:rpg_db@db:5432/rpg_db
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: yarn start:dev
+
+volumes:
+  postgres_data:
