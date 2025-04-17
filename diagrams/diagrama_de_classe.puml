@@ -1,0 +1,104 @@
+@startuml
+
+' Configurações do diagrama
+skinparam classAttributeIconSize 0
+skinparam classFontStyle bold
+skinparam classFontSize 14
+skinparam classBackgroundColor #F5F5F5
+skinparam classBorderColor #333333
+skinparam arrowColor #333333
+
+' Módulo Character
+package "Character Module" {
+    class CharacterController {
+        +create(createCharacterDto: CreateCharacterDto): Character
+        +findAll(findAllCharacterDto: FindAllCharacterDto): PaginationResponse<Character>
+        +findOne(id: string): Character
+        +update(id: string, updateCharacterDto: UpdateCharacterDto): Character
+        +updateAdventurerName(id: string, adventurerName: string): Character
+        +remove(id: string): {message: string}
+        +addToCharacter(id: string, magicItemId: string): {message: string}
+        +removeFromCharacter(id: string, magicItemId: string): {message: string}
+        +findCharacterAmulet(id: string): MagicItem | {message: string}
+        +findAllMagicItems(id: string): MagicItem[] | {message: string}
+    }
+
+    class CharacterService {
+        +findAll(findAllCharacterDto: FindAllCharacterDto): PaginationResponse<Character>
+        +findOne(id: string): Character
+        +addMagicItemToCharacter(id: string, magicItemId: string): {message: string}
+        +removeMagicItemFromCharacter(id: string, magicItemId: string): {message: string}
+        +findCharacterAmulet(id: string): MagicItem | {message: string}
+        +findAllMagicItems(id: string): MagicItem[] | {message: string}
+    }
+
+    class CreateCharacterService {
+        +create(createCharacterDto: CreateCharacterDto): Character
+    }
+
+    class UpdateCharacterService {
+        +update(id: string, updateCharacterDto: UpdateCharacterDto): Character
+        +updateAdventurerName(id: string, adventurerName: string): Character
+    }
+
+    class DeleteCharacterService {
+        +delete(id: string): {message: string}
+    }
+
+    class Character {
+        +id: string
+        +adventurerName: string
+        +magicItems: MagicItem[]
+    }
+}
+
+' Módulo MagicItem
+package "MagicItem Module" {
+    class MagicItemController {
+        +create(createMagicItemDto: CreateMagicItemDto): MagicItem
+        +findAll(findAllMagicItemDto: FindAllMagicItemDto): PaginationResponse<MagicItem>
+        +findOne(id: string): MagicItem
+        +update(id: string, updateMagicItemDto: UpdateMagicItemDto): MagicItem
+        +delete(id: string): {message: string}
+    }
+
+    class MagicItemService {
+        +findAll(findAllMagicItemDto: FindAllMagicItemDto): PaginationResponse<MagicItem>
+        +findOne(id: string): MagicItem
+    }
+
+    class CreateMagicItemService {
+        +create(createMagicItemDto: CreateMagicItemDto): MagicItem
+    }
+
+    class UpdateMagicItemService {
+        +update(id: string, updateMagicItemDto: UpdateMagicItemDto): MagicItem
+    }
+
+    class DeleteMagicItemService {
+        +delete(id: string): {message: string}
+    }
+
+    class MagicItem {
+        +id: string
+        +name: string
+        +description: string
+        +type: MagicItemType
+    }
+}
+
+' Relacionamentos
+CharacterController --> CharacterService
+CharacterController --> CreateCharacterService
+CharacterController --> UpdateCharacterService
+CharacterController --> DeleteCharacterService
+CharacterService --> Character
+Character --> MagicItem
+
+MagicItemController --> MagicItemService
+MagicItemController --> CreateMagicItemService
+MagicItemController --> UpdateMagicItemService
+MagicItemController --> DeleteMagicItemService
+MagicItemService --> MagicItem
+
+@enduml
